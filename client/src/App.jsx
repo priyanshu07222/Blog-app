@@ -17,7 +17,7 @@ function App() {
     )
   )
   return (
-    <div className="bg-gray-700 text-white">
+    <div>
       <RouterProvider router={router} />
     </div>
   )
