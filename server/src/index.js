@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from "dotenv"
 import userRoutes from './routes/user.routes.js'
+import authRoutes from './routes/auth.routes.js'
 
 dotenv.config();
 
@@ -13,7 +14,10 @@ mongoose.connect(process.env.MONGO_URI).then(()=>{
     console.log("connected successfully")
 })
 
+app.use(express.json())
+
 app.use('/api/user', userRoutes)
+app.use('/api/auth', authRoutes)
 
 app.listen(port, ()=>{
     console.log("Blog server is listening at port", port)
