@@ -22,3 +22,13 @@ app.use('/api/auth', authRoutes)
 app.listen(port, ()=>{
     console.log("Blog server is listening at port", port)
 })
+
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error occ'
+    res.status(statusCode).json({
+        success: false,
+        statusCode, 
+        message
+    })
+})
