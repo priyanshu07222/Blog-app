@@ -4,10 +4,16 @@ import { Link, useLocation } from
     'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon, FaSun } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
 function Header() {
     const path = useLocation()
+    const {currentUser} = useSelector(state => state.user)
     const theme = 'light'
+
+    const handleSignout = () => {
+
+    }
     return (
         <Navbar className='border-b-2'>
             <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white' >
@@ -32,7 +38,7 @@ function Header() {
                 >
                     {theme === 'light' ? <FaSun /> : <FaMoon />}
                 </Button>
-                {/* {currentUser ? (
+                {currentUser ? (
                 <Dropdown arrowIcon={false} inline label={
                     <Avatar alt='user' img={currentUser.profilePicture} rounded />
                 }>
@@ -41,7 +47,7 @@ function Header() {
                         <span className='block text-sm font-medium truncate'>{currentUser.email} </span>
                     </Dropdown.Header>
                     <Link to={'/dashboard?tab=profile'}>
-                    <Dropdown.Item>Profile</Dropdown.Item>
+                        <Dropdown.Item>Profile</Dropdown.Item>
                     </Link>
                     <Dropdown.Divider />
                     <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
@@ -50,11 +56,7 @@ function Header() {
                 <Link>
                 <Button gradientDuoTone='purple' outline>Sign In</Button>
                 </Link>
-            ) } */}
-                <Link to='/sign-in' outline >
-                    <Button gradientDuoTone='purpleToBlue' >Sign In</Button>
-                </Link>
-                <Navbar.Toggle />
+            ) }
             </div>
             <Navbar.Collapse>
                 <Navbar.Link active={path === '/'} as={'div'} >
