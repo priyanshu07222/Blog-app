@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice'
+import {OAuth} from '../components/OAuth.jsx'
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -66,9 +67,10 @@ export default function SignIn() {
                 type='password' placeholder='*******' id='password' onChange={handleChange}
               />
             </div>
-            <Button gradientDuoTone='purpleToPink' type='submit' disabled={loading}>{
+            <Button gradientDuoTone='purpleToPink' type='submit' disabled={loading} >{
             loading ? (<><Spinner size='sm' /> <span>Loading...</span></>) : 'Sign In'
             }</Button>
+            <OAuth />
           </form>
           <div className='flex gap-2 text-sm mt-5'>
             <span>Don't Have an account?</span>
