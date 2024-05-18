@@ -4,12 +4,15 @@ import { Link, useLocation } from
     'react-router-dom'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon, FaSun } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleTheme } from '../redux/them/themeSlice'
 
 function Header() {
-    const path = useLocation()
+    const path = useLocation();
+    const dispatch = useDispatch()
     const {currentUser} = useSelector(state => state.user)
-    const theme = 'light'
+    const {theme} = useSelector(state => state.theme)
+    // const theme = 'light'
 
     const handleSignout = () => {
 
@@ -34,7 +37,7 @@ function Header() {
                     className='w-12 h-10 hidden sm:inline'
                     color="gray"
                     pill
-                    onClick={() => { }}
+                    onClick={()=> dispatch(toggleTheme())}
                 >
                     {theme === 'light' ? <FaSun /> : <FaMoon />}
                 </Button>
